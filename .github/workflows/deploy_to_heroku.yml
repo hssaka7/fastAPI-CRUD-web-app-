@@ -22,11 +22,11 @@ jobs:
     - name: Build and push Docker image
       run: |
         docker-compose build
-        docker tag your_image_name registry.heroku.com/your-heroku-app-name/web
-        docker push registry.heroku.com/your-heroku-app-name/web
+        docker tag your_image_name registry.heroku.com/fast-api-project/web
+        docker push registry.heroku.com/fast-api-project/web
 
     - name: Deploy to Heroku
-      run: heroku container:release web --app your-heroku-app-name
+      run: heroku container:release web --app fast-api-project
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
