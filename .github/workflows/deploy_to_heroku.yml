@@ -25,7 +25,13 @@ jobs:
         HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
 
     - name: Push Docker Compose to Heroku
-      run: heroku container:push web --app ${{ secrets.HEROKU_APP_NAME }}
+      run: heroku container:push web --app ${{secrets.HEROKU_APP_NAME}}
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
 
     - name: Release Docker Compose on Heroku
-      run: heroku container:release web --app ${{ secrets.HEROKU_APP_NAME }}
+      run: heroku container:release web --app ${{secrets.HEROKU_APP_NAME}}
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
