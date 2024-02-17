@@ -1,0 +1,23 @@
+# docker-compose.yaml
+version: '3.8'
+
+services:
+  web:
+    build: api/
+    volumes:
+      - ./app:/app
+      - fastapi-data:/app/data
+    port:
+      - "8000:800"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - web
+
+volumes:
+  fastapi-data:
