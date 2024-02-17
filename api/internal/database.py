@@ -3,7 +3,7 @@ from .models import UserInfoIn
 from .utility import verify_password
 
 
-# TODO implement a real db here: sqlite
+# TODO implement a real db here: Mongo db. I will be setting database different from the application layer for the user info
 fake_users_db = {
     "johndoe": {
         "username": "johndoe",

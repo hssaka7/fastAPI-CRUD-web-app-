@@ -3,6 +3,7 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 
 
+# TODO Move these to settings: https://fastapi.tiangolo.com/advanced/settings/ 
 # this key by running : openssl rand -hex 32
 SECRET_KEY = "ca1bdf9363080dd7dee548bf6607162458d2c93f9c62bffd7e6095bfd3afa32c"
 ALGORITHM = "HS256"
