@@ -20,13 +20,11 @@ jobs:
 
     - name: Log in to Heroku Container Registry
       run: heroku container:login
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
     - name: Push Docker Compose to Heroku
-      run: heroku container:push web --app fast-api-project
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:push web --app your-heroku-app-name
 
     - name: Release Docker Compose on Heroku
-      run: heroku container:release web --app fast-api-project
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:release web --app your-heroku-app-name
