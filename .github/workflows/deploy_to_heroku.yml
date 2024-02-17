@@ -1,0 +1,33 @@
+name: Deploy FastAPI to Heroku
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      uses: docker/setup-docker@v2
+
+    - name: Login to Heroku Container Registry
+      run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin registry.heroku.com
+
+    - name: Build and push Docker image
+      run: |
+        docker-compose build
+        docker tag your_image_name registry.heroku.com/your-heroku-app-name/web
+        docker push registry.heroku.com/your-heroku-app-name/web
+
+    - name: Deploy to Heroku
+      run: heroku container:release web --app your-heroku-app-name
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
