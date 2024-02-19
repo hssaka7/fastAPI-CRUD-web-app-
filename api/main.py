@@ -32,8 +32,8 @@ async def root(token: Annotated[str, Depends(get_current_user)]):
 
 register_tortoise(
     app,
-    db_url="sqlite://posts.db",
+    db_url="sqlite://data/posts.db",
     modules={"models": ["routers.schema"]},
-    generate_schemas=False,
+    generate_schemas=True,
     add_exception_handlers=True,
 )

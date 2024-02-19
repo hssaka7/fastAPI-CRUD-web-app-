@@ -5,10 +5,10 @@ services:
   web:
     build: api/
     volumes:
-      - ./app:/app
-      - fastapi-data:/app/data
-    port:
-      - "8000:800"
+      - ./api:/api
+      - fastapi-data:/api/data
+    ports:
+      - "8000:8000"
 
   nginx:
     image: nginx:latest
